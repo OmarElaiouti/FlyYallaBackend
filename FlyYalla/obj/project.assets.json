@@ -1208,6 +1208,7 @@
         "dependencies": {
           "FlyYalla.CU": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.4",
+          "Microsoft.EntityFrameworkCore": "8.0.4",
           "Microsoft.EntityFrameworkCore.Proxies": "8.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.4"
         },
@@ -3261,11 +3262,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\flyy\\FlyYalla\\FlyYalla\\FlyYalla.Api.csproj",
+      "projectUniqueName": "E:\\localRepos\\FY\\FlyYalla\\FlyYalla.Api.csproj",
       "projectName": "FlyYalla.Api",
-      "projectPath": "E:\\flyy\\FlyYalla\\FlyYalla\\FlyYalla.Api.csproj",
+      "projectPath": "E:\\localRepos\\FY\\FlyYalla\\FlyYalla.Api.csproj",
       "packagesPath": "C:\\Users\\alzahraa\\.nuget\\packages\\",
-      "outputPath": "E:\\flyy\\FlyYalla\\FlyYalla\\obj\\",
+      "outputPath": "E:\\localRepos\\FY\\FlyYalla\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alzahraa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3282,14 +3283,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\flyy\\FlyYalla\\FlyYalla.BLL\\FlyYalla.BLL.csproj": {
-              "projectPath": "E:\\flyy\\FlyYalla\\FlyYalla.BLL\\FlyYalla.BLL.csproj"
+            "E:\\localRepos\\FY\\FlyYalla.BLL\\FlyYalla.BLL.csproj": {
+              "projectPath": "E:\\localRepos\\FY\\FlyYalla.BLL\\FlyYalla.BLL.csproj"
             },
-            "E:\\flyy\\FlyYalla\\FlyYalla.CU\\FlyYalla.CU.csproj": {
-              "projectPath": "E:\\flyy\\FlyYalla\\FlyYalla.CU\\FlyYalla.CU.csproj"
+            "E:\\localRepos\\FY\\FlyYalla.CU\\FlyYalla.CU.csproj": {
+              "projectPath": "E:\\localRepos\\FY\\FlyYalla.CU\\FlyYalla.CU.csproj"
             },
-            "E:\\flyy\\FlyYalla\\FlyYalla.DAL\\FlyYalla.DAL.csproj": {
-              "projectPath": "E:\\flyy\\FlyYalla\\FlyYalla.DAL\\FlyYalla.DAL.csproj"
+            "E:\\localRepos\\FY\\FlyYalla.DAL\\FlyYalla.DAL.csproj": {
+              "projectPath": "E:\\localRepos\\FY\\FlyYalla.DAL\\FlyYalla.DAL.csproj"
             }
           }
         }

@@ -4,16 +4,16 @@ using FlyYalla.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FlyYalla.DAL.Repositories.BaseRepository
 {
-    using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+   
 
     public class BaseRepository<T> : IBaseRepository<T> /*IDisposable*/ where T : class
     {
@@ -62,32 +62,25 @@ namespace FlyYalla.DAL.Repositories.BaseRepository
             _dbSet.Remove(obj);
         }
 
-        //public async Task SaveAsync()
-        //{
-        //    await _context.SaveChangesAsync();
-        //}
+    
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-        // Implement IDisposable
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //    GC.SuppressFinalize(this);
-        //}
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
 
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    if (!_disposed)
-        //    {
-        //        if (disposing)
-        //        {
-        //            // Release managed resources
-        //            _context.Dispose();
-        //        }
-
-        //        // Release unmanaged resources
-        //        _disposed = true;
-        //    }
-        //}
+               _disposed = true;
+            }
+        }
     }
 
 }

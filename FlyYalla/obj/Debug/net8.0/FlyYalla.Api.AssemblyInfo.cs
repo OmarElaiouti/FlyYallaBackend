@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FlyYalla.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3eddeb4a3a745198bcaee2b963a9797a01840fba")]
 [assembly: System.Reflection.AssemblyProductAttribute("FlyYalla.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FlyYalla.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
