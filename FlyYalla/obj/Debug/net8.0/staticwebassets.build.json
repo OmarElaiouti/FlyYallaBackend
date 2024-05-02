@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Ej8gjDAl9cpbwpwyP6p1QMKC2FJGKeIumwTjMvLmuEo=",
+  "Source": "FlyYalla.Api",
+  "BasePath": "_content/FlyYalla.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -131,7 +131,7 @@ namespace FlyYalla.BLL.Services
                 var encodedToken = WebUtility.UrlEncode(token);
 
                 // Construct and send email message
-                if (!await SendEmailConfirmationMessageAsync(newUser.Email, newUser.FirstName, encodedToken))
+                if (!await SendEmailConfirmationMessageAsync(newUser.Email, newUser.FirstName, newUser.Id, encodedToken))
                 {
                     // Failed to send email
                     _logger.LogWarning("Failed to send email confirmation message.");
@@ -407,12 +407,12 @@ namespace FlyYalla.BLL.Services
             // Generate a random temporary password (e.g., using a GUID)
             return Guid.NewGuid().ToString().Substring(0, 8); // Example: take the first 8 characters of a GUID
         }
-        private async Task<bool> SendEmailConfirmationMessageAsync(string emailAddress, string firstName, string encodedToken)
+        private async Task<bool> SendEmailConfirmationMessageAsync(string emailAddress, string firstName,string userId, string encodedToken)
         {
             try
             {
                 // Construct email confirmation link
-                var callbackUrl = $"{_appSettings.ApplicationBaseUrl}/auth/confirm-email?id={encodedToken}";
+                var callbackUrl = $"{_appSettings.ApplicationBaseUrl}/auth/confirm-email?user={userId}&id={encodedToken}";
 
                 // Construct the email message
                 var message = new MailMessage(_smtpSettings.Username, emailAddress)
