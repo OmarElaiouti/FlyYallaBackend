@@ -1,0 +1,6 @@
+E:\flyy\FlyYalla\FlyYalla\obj\Debug\net8.0\FlyYalla.Api.csproj.AssemblyReference.cache
+E:\flyy\FlyYalla\FlyYalla\obj\Debug\net8.0\FlyYalla.Api.GeneratedMSBuildEditorConfig.editorconfig
+E:\flyy\FlyYalla\FlyYalla\obj\Debug\net8.0\FlyYalla.Api.AssemblyInfoInputs.cache
+E:\flyy\FlyYalla\FlyYalla\obj\Debug\net8.0\FlyYalla.Api.AssemblyInfo.cs
+E:\flyy\FlyYalla\FlyYalla\obj\Debug\net8.0\FlyYalla.Api.csproj.CoreCompileInputs.cache
+E:\flyy\FlyYalla\FlyYalla\obj\Debug\net8.0\FlyYalla.Api.MvcApplicationPartsAssemblyInfo.cache
