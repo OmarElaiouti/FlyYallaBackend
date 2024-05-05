@@ -1,5 +1,5 @@
-﻿using FlyYalla.BLL.DTOs;
-using FlyYalla.CU.Helper;
+﻿using FlyYalla.CU.Helper;
+using FlyYalla.DAL.DTOs.AuthDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

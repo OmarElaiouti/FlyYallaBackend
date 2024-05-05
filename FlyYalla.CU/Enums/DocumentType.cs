@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace FlyYalla.CU.Enums
 {
-    public enum RegistrationStatus
+    public enum DocumentType
     {
-        Success,
-        UserAlreadyExists,
-        PasswordValidationFailed,
-        DisagreeTerms,
-        UnexpectedError
+        Passport,
+        NAtionalID
     }
 }

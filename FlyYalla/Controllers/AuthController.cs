@@ -1,6 +1,8 @@
 ﻿using FlyYalla.BLL.DTOs;
+using FlyYalla.BLL.DTOs.AuthDtos;
 using FlyYalla.BLL.Services.Interfaces;
 using FlyYalla.CU.Enums;
+using FlyYalla.DAL.DTOs.AuthDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -38,7 +40,7 @@ namespace FlyYalla.Api.Controllers
                     RegistrationStatus.Success => Ok(new { message = "User registered successfully." }),
                     RegistrationStatus.UserAlreadyExists => Conflict(new { error = "User already exists." }),
                     RegistrationStatus.PasswordValidationFailed => BadRequest(new { error = "Password validation failed." }),
-                    RegistrationStatus.OtherError => StatusCode(500, new { error = "An error occurred during registration." }),
+                    RegistrationStatus.UnexpectedError => StatusCode(500, new { error = "An error occurred during registration." }),
                     _ => StatusCode(500, new { error = "An unexpected error occurred." })
                 };
             }

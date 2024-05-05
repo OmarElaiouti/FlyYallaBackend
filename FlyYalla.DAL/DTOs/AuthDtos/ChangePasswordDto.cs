@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlyYalla.BLL.DTOs
+namespace FlyYalla.DAL.DTOs.AuthDtos
 {
     public class ChangePasswordDto
     {

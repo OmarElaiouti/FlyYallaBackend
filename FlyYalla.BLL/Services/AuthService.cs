@@ -1,26 +1,22 @@
-﻿using FlyYalla.BLL.DTOs;
+﻿
+using AutoMapper;
 using FlyYalla.BLL.Services.Interfaces;
 using FlyYalla.CU.Enums;
 using FlyYalla.CU.Helper;
 using FlyYalla.CU.JwtHelper;
 using FlyYalla.DAL.Context;
+using FlyYalla.DAL.DTOs.AuthDtos;
 using FlyYalla.DAL.Models;
 using FlyYalla.DAL.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 
 
 namespace FlyYalla.BLL.Services
@@ -35,6 +31,8 @@ namespace FlyYalla.BLL.Services
         private readonly JWT _jwt;
         private readonly AppSettings _appSettings;
         private readonly SmtpSettings _smtpSettings;
+        private readonly IMapper _mapper;
+        
 
         public AuthService(
             UserManager<ApplicationUser> userManager,
@@ -44,7 +42,9 @@ namespace FlyYalla.BLL.Services
             IOptions<JWT> jwt,
             ILogger<AuthService> logger,
             IOptions<AppSettings> appSettings,
-            IOptions<SmtpSettings> smtpSettings)
+            IOptions<SmtpSettings> smtpSettings,
+            IMapper mapper
+            )
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
@@ -54,13 +54,13 @@ namespace FlyYalla.BLL.Services
             _logger = logger;
             _appSettings = appSettings.Value;
             _smtpSettings = smtpSettings.Value;
-
+            _mapper = mapper;
         }
 
         public async Task<RegistrationResult> RegisterAsync(RegisterDto model)
         {
             // Check if the user already exists
-            var existingUser = await _userManager.FindByEmailAsync(model.Email);
+            var existingUser = await _userManager.FindByEmailAsync(model.UserMail);
             if (existingUser != null)
             {
                 // User already exists
@@ -81,14 +81,8 @@ namespace FlyYalla.BLL.Services
             }
 
             // Create a new user object
-            var newUser = new ApplicationUser
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                UserName = model.Email,
-                PhoneNumber = model.DialingCode + model.MobileNumber
-            };
+            var newUser = _mapper.Map<ApplicationUser>(model);
+
 
             try
             {
@@ -102,7 +96,7 @@ namespace FlyYalla.BLL.Services
 
                     // Rollback transaction and return false
                     await _unitOfWork.RollbackAsync();
-                    return new RegistrationResult { Status = RegistrationStatus.OtherError, Message = "Failed to create user." };
+                    return new RegistrationResult { Status = RegistrationStatus.UnexpectedError, Message = "Failed to create user." };
                 }
 
                 // Check if the role exists
@@ -115,7 +109,7 @@ namespace FlyYalla.BLL.Services
                     {
                         _logger.LogWarning("Failed to create role.");
                         await _unitOfWork.RollbackAsync();
-                        return new RegistrationResult { Status = RegistrationStatus.OtherError, Message = "Failed to create role." };
+                        return new RegistrationResult { Status = RegistrationStatus.UnexpectedError, Message = "Failed to create role." };
                     }
                 }
 
@@ -124,7 +118,7 @@ namespace FlyYalla.BLL.Services
                 {
                     _logger.LogWarning("Failed to add user to role.");
                     await _unitOfWork.RollbackAsync();
-                    return new RegistrationResult { Status = RegistrationStatus.OtherError, Message = "Failed to add user to role." };
+                    return new RegistrationResult { Status = RegistrationStatus.UnexpectedError, Message = "Failed to add user to role." };
                 }
 
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
@@ -136,7 +130,7 @@ namespace FlyYalla.BLL.Services
                     // Failed to send email
                     _logger.LogWarning("Failed to send email confirmation message.");
                     await _unitOfWork.RollbackAsync();
-                    return new RegistrationResult { Status = RegistrationStatus.OtherError, Message = "Failed to send email confirmation message." };
+                    return new RegistrationResult { Status = RegistrationStatus.UnexpectedError, Message = "Failed to send email confirmation message." };
                 }
 
                 await _unitOfWork.SaveAsync();
@@ -148,7 +142,7 @@ namespace FlyYalla.BLL.Services
             {
                 _logger.LogError(ex, "An error occurred during register.");
                 await _unitOfWork.RollbackAsync();
-                return new RegistrationResult { Status = RegistrationStatus.OtherError, Message = "An error occurred during registration." };
+                return new RegistrationResult { Status = RegistrationStatus.UnexpectedError, Message = "An error occurred during registration." };
             }
         }
         public async Task<string> LoginAsync(LoginDto model)

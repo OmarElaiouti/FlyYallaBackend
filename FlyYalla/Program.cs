@@ -13,6 +13,7 @@ using FlyYalla.BLL.Services.Interfaces;
 using FlyYalla.BLL.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Hosting;
 
 namespace FlyYalla
 {
@@ -32,6 +33,8 @@ namespace FlyYalla
             builder.Services.AddSingleton<AppSettings>();
 
 
+
+            builder.Services.AddAutoMapper(typeof(Program));
 
             //Database Configration
             builder.Services.AddDbContext<FlyYallaContext>(options =>

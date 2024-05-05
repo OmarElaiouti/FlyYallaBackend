@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FlyYalla.CU.Enums;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,14 +13,16 @@ namespace FlyYalla.DAL.Models
     {
         // Passenger and Passport details
         public bool IsEmailConfirmed { get; set; }
+        public string ContactEmail { get; set; }
         public string? Title { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string? Nationality { get; set; }
-        public string? PassportNumber { get; set; }
-        public DateTime? PassportExpiryDate { get; set; }
-        public DateTime? PassportCountry { get; set; }
+        public string? DocumentNumber { get; set; }
+        public DocumentType? DocumentType { get; set; }
+        public DateTime? DocumentExpiryDate { get; set; }
+        public string? DocumentIssuingCountry { get; set; }
 
         [ForeignKey("Cart")]
         public int? CartId { get; set; }
